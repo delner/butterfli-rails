@@ -1,0 +1,2 @@
+class ButterfliController < ApplicationController
+end

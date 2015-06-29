@@ -4,7 +4,7 @@ $LOAD_PATH << File.join(File.dirname(__FILE__))
 require 'rubygems'
 require 'pry'
 
-require 'butterfli/rails'
+require 'butterfli-rails'
 
 Dir["spec/support/**/*.rb"].each { |f| require File.expand_path(f) }
 

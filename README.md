@@ -8,7 +8,7 @@ Olfactory
 
 `butterfli-rails` is a gem that provides API endpoints for some common public APIs. It allows a Rails app to consume this data and obtain a `Story` from it.
 
-It is the extension of its sister gem, `butterfli-rails` which defines the common container `Story`.
+It is the extension of its sister gem, [`butterfli`](https://github.com/delner/butterfli) which defines the common container `Story`.
 
 ### Installation
 

@@ -1,4 +1,4 @@
-Olfactory
+Butterfli Rails
 ==========
 
 [![Build Status](https://travis-ci.org/delner/butterfli-rails.svg?branch=master)](https://travis-ci.org/delner/butterfli-rails) ![Gem Version](https://badge.fury.io/rb/butterfli-rails.svg)

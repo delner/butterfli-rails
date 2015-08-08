@@ -4,8 +4,8 @@ module Butterfli::Rails::Configuration::Providers
 
     def client
       @client ||= ::Instagram.configure do |config|
-        config.client_id = "f3fe014c5b9e4ef9982b94224a5083f4";
-        config.client_secret = "cba15fa341644ab8a782bc6b5feecfdc"
+        config.client_id = self.client_id
+        config.client_secret = self.client_secret
         ::Instagram.client
       end
     end

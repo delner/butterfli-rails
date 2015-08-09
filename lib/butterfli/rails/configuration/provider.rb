@@ -3,13 +3,16 @@ module Butterfli::Rails::Configuration
   end
 
   module Butterfli::Rails::Configuration::Providers
-    KNOWN_PROVIDERS = {
-      instagram: "Butterfli::Rails::Configuration::Providers::Instagram"
-    }
-    def self.new_provider(name)
-      provider = KNOWN_PROVIDERS[name.to_sym]
+    def self.known_providers
+      @known_providers ||= {}
+    end
+    def self.register_provider(name, klass)
+      self.known_providers[name.to_sym] = klass
+    end
+    def self.instantiate_provider(name)
+      provider = self.known_providers[name.to_sym]
       if provider
-        provider.constantize.new
+        provider.new
       else
         raise "Unknown provider: #{name}!"
       end
@@ -17,4 +20,5 @@ module Butterfli::Rails::Configuration
   end
 end
 
-require 'butterfli/rails/configuration/providers/instagram'
+# Require all providers...
+Dir["lib/butterfli/rails/configuration/providers/**/*.rb"].each { |f| require File.expand_path(f) }

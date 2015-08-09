@@ -11,3 +11,6 @@ module Butterfli::Rails::Configuration::Providers
     end
   end
 end
+
+# Add it to the known providers list...
+Butterfli::Rails::Configuration::Providers.register_provider(:instagram, Butterfli::Rails::Configuration::Providers::Instagram)

@@ -4,7 +4,7 @@ module Butterfli::Rails::Configuration
   def provider(name, &block)
     @providers ||= {}
 
-    new_provider = Butterfli::Rails::Configuration::Providers.new_provider(name)
+    new_provider = Butterfli::Rails::Configuration::Providers.instantiate_provider(name)
     block.call(new_provider)
     @providers[name.to_sym] = new_provider
   end

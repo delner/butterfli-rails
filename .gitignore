@@ -5,8 +5,11 @@
 /InstalledFiles
 /pkg/
 /spec/reports/
-/test/tmp/
-/test/version_tmp/
+/spec/tmp/
+/spec/version_tmp/
+/spec/dummy/db/*.sqlite3
+/spec/dummy/log/*.log
+/spec/dummy/tmp/
 /tmp/
 
 ## Specific to RubyMotion:

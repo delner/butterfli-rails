@@ -23,9 +23,6 @@ require 'rspec/rails'
 # ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
 # load "spec/db/schema.rb"
 
-# Load any Rspec suite support files
-Dir["spec/support/**/*.rb"].each { |f| require File.expand_path(f) }
-
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.expect_with :rspec do |expectations|
@@ -35,3 +32,6 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 end
+
+# Load any Rspec suite support files
+Dir["spec/support/**/*.rb"].each { |f| require File.expand_path(f) }

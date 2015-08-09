@@ -1,14 +1,21 @@
 require 'butterfli/rails/configuration/provider'
 
 module Butterfli::Rails::Configuration
-  attr_accessor :providers
-
   def provider(name, &block)
-    self.providers ||= {}
+    @providers ||= {}
 
     new_provider = Butterfli::Rails::Configuration::Providers.new_provider(name)
     block.call(new_provider)
-    self.providers[name.to_sym] = new_provider
+    @providers[name.to_sym] = new_provider
+  end
+  def providers(name)
+    @providers ||= {}
+
+    if @providers[name.to_sym]
+      return @providers[name.to_sym]
+    else
+      raise "Missing provider configuration for \"#{name.to_s}\"! Did you add it to your initializer file?"
+    end
   end
 end
 

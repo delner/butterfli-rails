@@ -2,20 +2,13 @@ require 'spec_helper'
 
 describe Butterfli::Rails::Configuration::Providers::Instagram do
   let(:provider_name) { :instagram }
+  subject { Butterfli.configuration.providers(provider_name) }
 
   context "when given a configuration" do
     context "with a client ID and secret" do
-      subject { Butterfli.configuration.providers(:instagram) }
       let(:client_id) { "client_id" }
       let(:client_secret) { "client_secret" }
-      before do
-        Butterfli.configure do |config|
-          config.provider provider_name do |provider|
-            provider.client_id = client_id
-            provider.client_secret = client_secret
-          end
-        end
-      end
+      before { Butterfli::Test::configure_for_instagram(client_id, client_secret) }
 
       # Check configuration values...
       it { expect(subject.client_id).to eq(client_id) }

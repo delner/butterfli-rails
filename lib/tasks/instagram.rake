@@ -1,11 +1,10 @@
-require 'pry'
 
 namespace :butterfli do
   namespace :instagram do
     namespace :subscription do
       desc 'Delete all Instagram subscriptions.'
       task :teardown => [:environment] do |t, args|
-        client = Butterfli.configuration.providers[:instagram].client
+        client = Butterfli.configuration.providers(:instagram).client
         puts "Deleting all existing Instagram subscriptions..."
         puts client.delete_subscription( object: 'all')
       end
@@ -21,7 +20,7 @@ namespace :butterfli do
           lat = args.lat.to_f
           lng = args.lng.to_f
           radius = args.radius.to_i
-          client = Butterfli.configuration.providers[:instagram].client
+          client = Butterfli.configuration.providers(:instagram).client
           
           puts client.create_subscription( callback_url: callback_url,
                                       object: "geography",

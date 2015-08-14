@@ -6,6 +6,8 @@ ENV["RAILS_ENV"] = "test"
 # Load dependencies
 require 'rubygems'
 require 'pry'
+require 'webmock/rspec'
+require 'vcr'
 require 'butterfli-rails'
 
 # Load the dummy app, to test the engine with
@@ -22,6 +24,11 @@ require 'rspec/rails'
 # Load database & schema
 # ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
 # load "spec/db/schema.rb"
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.hook_into :webmock
+end
 
 # Load any Rspec suite support files
 Dir["spec/support/**/*.rb"].each { |f| require File.expand_path(f) }

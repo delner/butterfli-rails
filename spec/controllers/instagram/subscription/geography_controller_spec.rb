@@ -8,8 +8,13 @@ RSpec.describe Butterfli::Instagram::Subscription::GeographyController, type: :c
 
   # Define expected behaviors for each endpoint:
   describe "#setup" do
-    context "when given no parameters" do
-      it_behaves_like "a well-formed HTML request", :setup, {}
+    context "when called with a typical Instagram setup request" do
+      let(:req) { request_fixture("instagram/subscription/geography/setup/default") }
+      subject { execute_fixtured_action(:setup, req) }
+      it do
+        expect(subject).to have_http_status(:ok)
+        expect(subject.body).to eq(req['query_string']['hub.challenge'])
+      end
     end
   end
 end

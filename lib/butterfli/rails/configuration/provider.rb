@@ -21,4 +21,4 @@ module Butterfli::Rails::Configuration
 end
 
 # Require all providers...
-Dir["lib/butterfli/rails/configuration/providers/**/*.rb"].each { |f| require File.expand_path(f) }
+Dir[File.expand_path("../providers/**/*.rb", __FILE__)].each { |f| require File.expand_path(f) }

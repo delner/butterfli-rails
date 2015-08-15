@@ -46,7 +46,7 @@ class FixtureRecorder
     serialized_request['method'] = env["REQUEST_METHOD"].downcase
     serialized_request['uri'] = env["REQUEST_URI"]
     serialized_request['path'] = env["PATH_INFO"]
-    serialized_request['query_string'] = Rack::Utils.parse_nested_query(env["QUERY_STRING"])
+    serialized_request['query_string'] = env["QUERY_STRING"]
     serialized_request['body'] = {
       "encoding" => env["rack.input"].external_encoding.to_s,
       "string" => env["rack.input"].read

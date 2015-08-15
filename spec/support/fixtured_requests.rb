@@ -22,10 +22,17 @@ module Butterfli
     end
     def execute_fixtured_action(action, request)
       request = request.is_a?(String) ? request_fixture(request) : request
-      send( request['method'],
-            action,
-            request['query_string'],
-            request['headers'])
+      if request['method'] == 'get'
+        send( request['method'],
+              action,
+              request['query_string'],
+              request['headers'])
+      elsif request['method'] == 'post'
+        send( request['method'],
+              action,
+              request['body']['string'],
+              request['headers'])
+      end
     end
   end
 end

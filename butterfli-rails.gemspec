@@ -21,8 +21,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "butterfli", "~> 0.0.1"
   s.add_dependency "rails", ">= 3.2.22"
-  s.add_dependency "instagram", "~> 1.1.5"
-
 
   s.add_development_dependency "rake", "~> 10.0"
   s.add_development_dependency "rspec", "~> 3.3"

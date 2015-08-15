@@ -10,6 +10,9 @@ require 'webmock/rspec'
 require 'vcr'
 require 'butterfli-rails'
 
+# Testing extensions
+require 'butterfli/rails/test'
+
 # Load the dummy app, to test the engine with
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 ActiveRecord::Migrator.migrations_paths = [File.expand_path("../../spec/dummy/db/migrate", __FILE__)]
@@ -26,7 +29,7 @@ require 'rspec/rails'
 # load "spec/db/schema.rb"
 
 VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.cassette_library_dir = "spec/fixtures/outbound"
   config.hook_into :webmock
   config.hook_into :faraday
 end
@@ -42,7 +45,7 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
-  config.include Butterfli::Test # Adds some test helpers (fixtured requests, configuration)
+  config.include Butterfli::Rails::Test # Adds some test helpers (fixtured requests, configuration)
 end
 
 

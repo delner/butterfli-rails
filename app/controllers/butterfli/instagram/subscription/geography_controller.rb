@@ -23,49 +23,38 @@ class Butterfli::Instagram::Subscription::GeographyController < Butterfli::Insta
   end
 
   def callback
-    # I'm a means of receiving realtime updates from Instagram
-    # puts "I got called with realtime data!"
-    geo_data = nil
-    # puts "Last: #{@@most_recent_id}"
+    media_objects = nil
+
+    # Step #1: Callback to Instagram and retrieve the media metadata
     client.process_subscription(request.raw_post) do |handler|
       handler.on_geography_changed do |geo_id, data|
-        geo_data = client.geography_recent_media(geo_id, min_id: @@most_recent_id)
+        media_objects = client.geography_recent_media(geo_id, min_id: @@most_recent_id)
       end
     end
     
-    images_from_geodata = geo_data.select { |item| item['type'] == 'image' }.uniq { |item| item['id'] }
-    # puts "Data I retrieved from Instagram: #{images_from_geodata.count} images"
-    # puts "Their unique IDs: #{images_from_geodata.collect { |item| item['id'] }}"
-    # puts geo_data
+    # Step #2: Filter images to uniques
+    media_objects = media_objects.uniq { |item| item['id'] }
 
-    # TODO: Replace with Butterfli
-    if !images_from_geodata.empty?
-      # markup = ""
-      # images_from_geodata.each do |image|
-      #   markup += "<div><img src=\"#{image['images']['thumbnail']['url']}\" /></div>"
-      # end
-      json = "["
-      images_from_geodata.each_with_index do |image, i|
-        json += "," if i > 0
-        json += "{\"image\": \"#{image['images']['thumbnail']['url']}\", \"lat\": \"#{image['location']['latitude']}\", \"lng\": \"#{image['location']['longitude']}\"}"
+    stories = []
+    if !media_objects.empty?
+      # Step #3: Transform image metadata using Butterfli
+      media_objects.each do |media_object|
+        story = Butterfli::Data::Instagram::MediaObject.new(media_object).transform
+        stories << story if story
       end
-      json += "]"
       
-
-      @@most_recent_id = images_from_geodata.collect(&:id).max 
-      # puts "Updated last to: #{@@most_recent_id}"
+      # Step #3.1: Update the 'last seen photo ID', for 'pagination'
+      @@most_recent_id = media_objects.collect(&:id).max 
     end
 
+    # Step #4: Notify Instagram subscribers
+    # TODO: Send notification to subscribers
+
+    # Step #5: Render output
     respond_to do |format|
-      format.html { render text: "#{json}" }
-      format.json { render text: "#{json}" }
-      format.text { render text: "#{json}" }
+      format.html { render text: "#{stories.to_json}" }
+      format.json { render text: "#{stories.to_json}" }
+      format.text { render text: "#{stories.to_json}" }
     end
-  end
-
-  def story_received
-    # I'm a placeholder: Inheriting controllers should override me
-    #                    to get their hands on data.
-    # WebsocketRails[:realtime].trigger 'update', json
   end
 end

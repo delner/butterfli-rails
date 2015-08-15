@@ -57,9 +57,9 @@ class Butterfli::Instagram::Subscription::GeographyController < Butterfli::Insta
     end
 
     respond_to do |format|
-      format.html { render text: '' }
-      format.json { render text: '' }
-      format.text { render text: '' }
+      format.html { render text: "#{json}" }
+      format.json { render text: "#{json}" }
+      format.text { render text: "#{json}" }
     end
   end
 

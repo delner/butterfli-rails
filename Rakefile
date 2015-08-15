@@ -7,8 +7,6 @@ RSpec::Core::RakeTask.new
 task :default => :spec
 task :test => :spec
 
-import "./lib/tasks/instagram.rake"
-
 namespace :doc do
   begin
     require 'yard'

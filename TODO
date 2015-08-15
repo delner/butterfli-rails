@@ -1,6 +1,3 @@
-1. Record Instagram object lookup w/ VCR
-2. Write spec to test "callback" for Instagram geography API
-3. Wire-up use of Butterfli::Story in Instagram geography API
-4. Write subscription mechanism to push events
-5. Rake task tests?
-6. Readme update
+1. Write subscription mechanism to push events
+2. Rake task tests?
+3. Readme update

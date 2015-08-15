@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", ">= 3.2.22"
   s.add_dependency "instagram", "~> 1.1.5"
 
+
   s.add_development_dependency "rake", "~> 10.0"
   s.add_development_dependency "rspec", "~> 3.3"
   s.add_development_dependency "rspec-rails", "~> 3.3"
@@ -31,6 +32,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pry-stack_explorer", "~> 0.4.9"
   s.add_development_dependency "sqlite3", "~> 1.3.10"
   s.add_development_dependency "vcr", "~> 2.9.3"
+  s.add_development_dependency "faraday", "~> 0.8.9" # Rollback for VCR compatibility
   s.add_development_dependency "webmock", "~> 1.21.0"
   s.add_development_dependency "yard", "~> 0.8.7.6"
 end

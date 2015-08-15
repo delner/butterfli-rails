@@ -4,7 +4,7 @@ RSpec.describe Butterfli::Instagram::Subscription::GeographyController, type: :c
   routes { Butterfli::Rails::Engine.routes }
 
   # Configure the Instagram client...
-  before { Butterfli::Test::configure_for_instagram }
+  before { configure_for_instagram }
 
   # Define expected behaviors for each endpoint:
   describe "#setup" do

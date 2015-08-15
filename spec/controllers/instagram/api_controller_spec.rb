@@ -7,7 +7,7 @@ describe Butterfli::Instagram::ApiController do
     context "with a client ID and secret" do
       let(:client_id) { "client_id" }
       let(:client_secret) { "client_secret" }
-      before { Butterfli::Test::configure_for_instagram(client_id, client_secret) }
+      before { configure_for_instagram(client_id, client_secret) }
       
       describe "#client" do
         subject { super().client }

@@ -8,7 +8,7 @@ describe Butterfli::Rails::Configuration::Providers::Instagram do
     context "with a client ID and secret" do
       let(:client_id) { "client_id" }
       let(:client_secret) { "client_secret" }
-      before { Butterfli::Test::configure_for_instagram(client_id, client_secret) }
+      before { configure_for_instagram(client_id, client_secret) }
 
       # Check configuration values...
       it { expect(subject.client_id).to eq(client_id) }

@@ -1,6 +1,6 @@
 module Butterfli
   module Test
-    def self.configure_for_instagram(client_id = "client_id", client_secret = "client_secret")
+    def configure_for_instagram(client_id = "client_id", client_secret = "client_secret")
       Butterfli.configure do |config|
         config.provider :instagram do |provider|
           provider.client_id = client_id

@@ -41,7 +41,7 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
-  config.include Butterfli::Test
+  config.include Butterfli::Test # Adds some test helpers (fixtured requests, configuration)
 end
 
 

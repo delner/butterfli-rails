@@ -1,5 +1,8 @@
 require 'rack'
 
+# This reads YML fixtures generated from the 'request_recorder.rb' script
+# and converts them back into Ruby Hashes. Also invokes requests for specs.
+# TODO: Refactor this into a cleaner class? Possibly its own gem?
 module Butterfli
   module Test
     FIXTURES_DIR = File.expand_path('../../../spec/fixtures/requests', __FILE__)

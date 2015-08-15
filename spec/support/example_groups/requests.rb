@@ -1,4 +1,3 @@
-
 # Define some common HTTP request examples:
 RSpec.shared_examples "a HTTP request" do |endpoint, params, response_code|
   subject do

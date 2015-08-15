@@ -6,7 +6,7 @@ require 'rack'
 module Butterfli
   module Rails
     module Test
-      FIXTURES_DIR = File.join(Dir.pwd + '/spec/fixtures/requests')
+      FIXTURES_DIR = File.join(Dir.pwd + '/spec/fixtures/inbound')
 
       def read_fixture_file(name)
         fixture_file = File.join(FIXTURES_DIR, "#{name}.yml")

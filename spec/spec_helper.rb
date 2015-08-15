@@ -29,7 +29,7 @@ require 'rspec/rails'
 # load "spec/db/schema.rb"
 
 VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.cassette_library_dir = "spec/fixtures/outbound"
   config.hook_into :webmock
   config.hook_into :faraday
 end

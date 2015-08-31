@@ -13,26 +13,31 @@ module Butterfli
         fixture = YAML.load(File.read(fixture_file))
       end
       def request_fixture(name)
-        request = read_fixture_file(name)['http_interactions'].first['request']
-        request['query_string'] = Rack::Utils.parse_nested_query(request['query_string'])
-        request
+        req = read_fixture_file(name)['http_interactions'].first['request']
+        req['query_string'] = Rack::Utils.parse_nested_query(req['query_string'])
+        req
       end
-      def execute_fixtured_request(request)
-        request = request.is_a?(String) ? request_fixture(request) : request
-        send(request['method'], request['path'])
+      def execute_fixtured_request(req)
+        req = req.is_a?(String) ? req_fixture(req) : req
+        send(req['method'], req['path'])
       end
-      def execute_fixtured_action(action, request)
-        request = request.is_a?(String) ? request_fixture(request) : request
-        if request['method'] == 'get'
-          send( request['method'],
+      def execute_fixtured_action(action, req)
+        req = req.is_a?(String) ? request_fixture(req) : req
+
+        # Set any headers
+        if !req['headers'].nil? && !req['headers'].empty?
+          parsed_headers = req['headers'].inject({}) { |h, (k, v)| v.is_a?(Array) ? h[k] = v.first : h[k] = v; h }
+          request.headers.merge!(parsed_headers)
+        end
+
+        if req['method'] == 'get'
+          send( req['method'],
                 action,
-                request['query_string'],
-                request['headers'])
-        elsif request['method'] == 'post'
-          send( request['method'],
+                req['query_string'])
+        elsif req['method'] == 'post'
+          send( req['method'],
                 action,
-                request['body']['string'],
-                request['headers'])
+                req['body']['string'])
         end
       end
     end

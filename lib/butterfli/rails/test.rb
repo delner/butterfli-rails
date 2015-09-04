@@ -10,7 +10,11 @@ module Butterfli
 
       def read_fixture_file(name)
         fixture_file = File.join(FIXTURES_DIR, "#{name}.yml")
-        fixture = YAML.load(File.read(fixture_file))
+        if fixture = YAML.load(File.read(fixture_file))
+          return fixture
+        else
+          raise "Failed to load request fixture file #{fixture_file}! File may be incorrectly formatted."
+        end
       end
       def request_fixture(name)
         req = read_fixture_file(name)['http_interactions'].first['request']

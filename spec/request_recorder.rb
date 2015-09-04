@@ -24,7 +24,7 @@ class FixtureRecorder
   end
 
   def file_path_from(env)
-    file_path = env['PATH_INFO'].downcase.gsub('/', '_')[/[^_].+[^_]/]
+    file_path = (env['PATH_INFO'] + '/' + env["REQUEST_METHOD"]).downcase.gsub('/', '_')[/[^_].+[^_]/]
     file_path = 'root' unless file_path =~ /\S/
     File.join(FIXTURES_DIR, [file_path, 'yml'].join('.'))
   end

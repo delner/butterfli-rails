@@ -2,7 +2,7 @@
 Rails
 ==========
 
-[![Build Status](https://travis-ci.org/delner/butterfli-rails.svg?branch=master)](https://travis-ci.org/delner/butterfli-rails) ![Gem Version](https://badge.fury.io/rb/butterfli-rails.svg)
+[![Build Status](https://travis-ci.org/delner/butterfli-rails.svg?branch=master)](https://travis-ci.org/delner/butterfli-rails) ![Gem Version](https://img.shields.io/gem/v/butterfli-rails.svg?maxAge=2592000)
 ###### *For Ruby 1.9.3, 2.0.0, 2.1.0*
 
 ### Introduction
